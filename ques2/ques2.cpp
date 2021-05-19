@@ -7,6 +7,7 @@ using namespace cv;
 using namespace std;
 
 void MyLine( Mat img, Point start, Point end );
+Mat dst ;
 int main(int argc, char** argv)
 {
     const char* filename = argc >=2 ? argv[1] : "smarties.png";
@@ -18,14 +19,12 @@ int main(int argc, char** argv)
         printf(" Program Arguments: [image_name -- default %s] \n", filename);
         return EXIT_FAILURE;
     }
-    for(int i = 0; i < 1500;i++){
-	    Vec3f intensity = src.at<Vec3f>(i, 1400);
-            float blue = intensity.val[0];
-		//if(blue > 50)
-		cout<<blue<<endl;
-		//MyLine( src, Point (i,0), Point (i,1400) );
-}	
-    cv::imshow("input image ",src);
+
+	threshold(src,dst, 20, 200, THRESH_BINARY);
+
+	
+	
+    cv::imshow("input image ",dst);
    // cv::imshow("cropped image ",image2);
     cv::waitKey(0);
 
